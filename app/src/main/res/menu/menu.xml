@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <item android:id="@+id/getatip"
+            android:title="Get a tip"/>
+        <item android:id="@+id/changepass"
+            android:title="Change password"/>
+        <item android:id="@+id/secuquestion"
+            android:title="Security question"/>
+        <item android:id="@+id/rateourapp"
+            android:title="Rate our App"/>
+        <item
+            android:id="@+id/sharefriends"
+            android:title="Share with Friends"/>
+
+</menu>

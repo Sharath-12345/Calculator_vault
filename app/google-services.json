@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "386172364741",
+    "project_id": "calculator-lock-ba49a",
+    "storage_bucket": "calculator-lock-ba49a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:386172364741:android:71fd495ab635a58d608dac",
+        "android_client_info": {
+          "package_name": "com.example.calculatorlock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "386172364741-0n88am8tunaof3ir79hoe96tmmkbhtoi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHy9xs3VpIxh-GBVgWCREAGIUM8HYYuGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "386172364741-0n88am8tunaof3ir79hoe96tmmkbhtoi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
