@@ -87,7 +87,6 @@ public class playingvideo extends AppCompatActivity {
         DefaultTrackSelector trackSelector = new DefaultTrackSelector(playingvideo.this);
         trackSelector.setParameters(trackSelector.buildUponParameters().setMaxVideoSizeSd());
 
-
         player = new ExoPlayer.Builder(this)
                 .setTrackSelector(trackSelector)
                 .build();
@@ -99,10 +98,6 @@ public class playingvideo extends AppCompatActivity {
            {
                mediaItems.add(MediaItem.fromUri(single));
            }
-
-
-
-
         player.setMediaItems(mediaItems);
         player.setPlayWhenReady(playwhenready);
         player.seekTo(current, playbackposition);
