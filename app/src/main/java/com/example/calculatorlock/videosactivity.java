@@ -147,7 +147,6 @@ public class videosactivity extends AppCompatActivity {
                             for (int i = 0; i < count1; i++) {
                                 videouri = data.getClipData().getItemAt(i).getUri();
                                 upload(videouri);
-
                             }
                         }
 
