@@ -1,5 +1,5 @@
-package com.example.calculatorlock;
-import static com.example.calculatorlock.menu.height;
+package com.sharathkumar.calculatorlock;
+import static com.sharathkumar.calculatorlock.menu.height;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;

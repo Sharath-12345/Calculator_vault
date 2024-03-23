@@ -1,4 +1,4 @@
-package com.example.calculatorlock;
+package com.sharathkumar.calculatorlock;
 
 import android.app.Application;
 

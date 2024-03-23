@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "386172364741",
+    "firebase_url": "https://calculator-lock-ba49a-default-rtdb.firebaseio.com",
     "project_id": "calculator-lock-ba49a",
     "storage_bucket": "calculator-lock-ba49a.appspot.com"
   },
@@ -9,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:386172364741:android:71fd495ab635a58d608dac",
         "android_client_info": {
-          "package_name": "com.example.calculatorlock"
+          "package_name": "com.sharathkumar.calculatorlock"
         }
       },
       "oauth_client": [

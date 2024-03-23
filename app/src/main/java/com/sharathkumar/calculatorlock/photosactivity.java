@@ -1,8 +1,8 @@
-package com.example.calculatorlock;
+package com.sharathkumar.calculatorlock;
 
 
 
-import static com.example.calculatorlock.menu.userid;
+import static com.sharathkumar.calculatorlock.menu.userid;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -120,15 +120,17 @@ public class photosactivity extends AppCompatActivity {
         btngalleryphoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(ContextCompat.checkSelfPermission(photosactivity.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED
-                        && ContextCompat.checkSelfPermission(photosactivity.this,Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED
-                )
-                {
+                if (android.os.Build.VERSION.SDK_INT >= 31) {
                     opengallery();
                 }
-                else
-                {
-                    requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},200);
+                if (ContextCompat.checkSelfPermission(photosactivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                        && ContextCompat.checkSelfPermission(photosactivity.this, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                ) {
+                    opengallery();
+
+                } else {
+
+                    requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 200);
                 }
 
 
@@ -140,6 +142,7 @@ public class photosactivity extends AppCompatActivity {
                     if(result.getResultCode()== Activity.RESULT_OK)
                     {
                         Intent data=result.getData();
+                        assert data != null;
                         if(data.getData()!=null)
                         {
                             imguri=data.getData();
@@ -285,7 +288,6 @@ public class photosactivity extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
         gallerylauncher.launch(intent);
-
     }
 
     @Override
@@ -323,16 +325,11 @@ public class photosactivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode==200)
+        if(requestCode==100)
         {
             if(grantResults.length>0)
             {
-                int read=grantResults[0];
-                boolean chread=read==PackageManager.PERMISSION_GRANTED;
-                if(chread)
-                {
-                    opengallery();
-                }
+               opengallery();
             }
         }
     }

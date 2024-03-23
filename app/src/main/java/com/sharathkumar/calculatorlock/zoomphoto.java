@@ -1,6 +1,6 @@
-package com.example.calculatorlock;
+package com.sharathkumar.calculatorlock;
 
-import static com.example.calculatorlock.photosactivity.imglist;
+import static com.sharathkumar.calculatorlock.photosactivity.imglist;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;

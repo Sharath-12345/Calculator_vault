@@ -1,4 +1,4 @@
-package com.example.calculatorlock;
+package com.sharathkumar.calculatorlock;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -116,6 +116,6 @@ public class secquestion extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
+        super.onBackPressed();
     }
 }

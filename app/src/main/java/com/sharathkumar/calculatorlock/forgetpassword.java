@@ -1,4 +1,4 @@
-package com.example.calculatorlock;
+package com.sharathkumar.calculatorlock;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.sharathkumar.calculatorlock.R;
 
 public class forgetpassword extends AppCompatActivity {
     TextView txt;

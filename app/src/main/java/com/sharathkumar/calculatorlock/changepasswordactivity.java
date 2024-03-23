@@ -1,4 +1,5 @@
-package com.example.calculatorlock;
+package com.sharathkumar.calculatorlock;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,198 +7,37 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-
-import org.mozilla.javascript.Context;
-import org.mozilla.javascript.Scriptable;
 
 
-public class MainActivity extends AppCompatActivity {
+public class changepasswordactivity extends AppCompatActivity {
+    Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnplus, btnminus, btnmul, btndiv, btndot, btnequal, btnback, btnac;
     private TextView inputtextview, enterpasswordtextview;
     int heightofinputtextview, widthofinputtextview;
-    GridLayout container1;
-
-    String secondpassword;
-
-
-
-    Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnplus, btnminus, btnmul, btndiv, btndot, btnequal, btnback, btnac;
     String input = "0";
-    int flag = 0;
-    String password;
+    String secondpassword;
     String firstpassword;
-
-    Boolean check;
-    String result;
+    int flag=0;
+    GridLayout container1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-        SharedPreferences preferences=getSharedPreferences("firsttimessss",MODE_PRIVATE);
-        check=preferences.getBoolean("flag",false);
-
+        setContentView(R.layout.activity_changepasswordactivity);
 
         findingallids();
-
-
-        MobileAds.initialize(this);
-        AdRequest request=new AdRequest.Builder().build();
-        AdView adView=findViewById(R.id.Adview);
-        adView.loadAd(request);
 
         gettingdisplaymetrics();
 
         settingheightandwidth();
-
         display();
 
-
-        if (check) {
-            enterpasswordtextview.setText(null);
-
-        }
-
     }
-
-
-
-    private void evaluating() {
-        if(check)
-        {
-            SharedPreferences sharedPreferences=getSharedPreferences("firsttimessss",MODE_PRIVATE);
-            String pass=sharedPreferences.getString("sflag","sha");
-            if(input.equals(pass))
-            {
-                input="0";
-                inputtextview.setText(input);
-                gotomenu();
-            } else if (input.equals("1234567890")) {
-
-                    input = "0";
-                    inputtextview.setText(input);
-                    Intent intent = new Intent(MainActivity.this, forgetpassword.class);
-                    startActivity(intent);
-
-            } else
-            {
-                try {
-
-                    Context rhino = Context.enter();
-                    rhino.setOptimizationLevel(-1);
-                    Scriptable scriptable = rhino.initSafeStandardObjects();
-                    Object evaluresult = rhino.evaluateString(scriptable, input, "Calculator", 1, null);
-                    result = Context.toString(evaluresult);
-                    input = result;
-                    enterpasswordtextview.setText(null);
-                    inputtextview.setText(input);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    enterpasswordtextview.setText("Invalid input");
-                    input="0";
-                    inputtextview.setText(input);
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            enterpasswordtextview.setText("");
-                        }
-                    },3000);
-                }
-            }
-        }
-
-        if(!check)
-        {
-            if(input.length()>4)
-            {
-                Toast.makeText(this, "Password should be 4 digits only", Toast.LENGTH_SHORT).show();
-            }
-            else   if (input.length() == 4 && TextUtils.isDigitsOnly(input) && flag == 0) {
-                firstpassword = input;
-                enterpasswordtextview.setText("RE-ENTER THE PASSWORD");
-                input = "0";
-                inputtextview.setText(input);
-                flag++;
-            } else if (flag == 1) {
-                secondpassword = input;
-                if (firstpassword.equals(secondpassword)) {
-                    input = "0";
-
-                    Dialog dialog=new Dialog(this);
-                    dialog.setContentView(R.layout.customdialogpasssucess);
-                    dialog.setCancelable(false);
-                    dialog.show();
-                    Button btnokay=dialog.findViewById(R.id.btnokay);
-                    btnokay.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                            SharedPreferences preferences=getSharedPreferences("firsttimessss",MODE_PRIVATE);
-                            SharedPreferences.Editor editor=preferences.edit();
-                            editor.putBoolean("flag",true);
-                            editor.putString("sflag",secondpassword);
-                            editor.apply();
-                            input="0";
-                            enterpasswordtextview.setText(null);
-                            inputtextview.setText(input);
-                            dialog.dismiss();
-                            gotosecquestion();
-
-                        }
-                    });
-
-
-                } else {
-                    Dialog dialog=new Dialog(this);
-                    dialog.setContentView(R.layout.customdialogpasssucess);
-                    dialog.setCancelable(false);
-                    dialog.show();
-                    TextView textView=dialog.findViewById(R.id.txtpasssucess);
-                    textView.setText("Passwords dont match ");
-                    Button okay=dialog.findViewById(R.id.btnokay);
-                    okay.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            input = "0";
-                            inputtextview.setText(input);
-                            enterpasswordtextview.setText("CREATE A 4 DIGIT PASSWORD AND PRESS ' = ''");
-                            flag--;
-                            dialog.dismiss();
-                        }
-                    });
-
-                }
-
-            }
-
-        }
-
-    }
-
-    private void gotomenu() {
-        Intent intent=new Intent(MainActivity.this,menu.class);
-        startActivity(intent);
-    }
-
-    private void gotosecquestion() {
-        Intent intent=new Intent(MainActivity.this,secquestion.class);
-        startActivity(intent);
-    }
-
-
     private void display() {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -454,6 +294,72 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 evaluating();
             }
+
+            private void evaluating() {
+                if(input.length()==4 && TextUtils.isDigitsOnly(input) && flag==0)
+                {
+                    firstpassword = input;
+                    enterpasswordtextview.setText("RE-ENTER THE PASSWORD");
+                    input = "0";
+                    inputtextview.setText(input);
+                    flag++;
+                }
+                else if (flag == 1) {
+                    secondpassword = input;
+                    if (firstpassword.equals(secondpassword)) {
+                        input = "0";
+
+
+                        Dialog dialog = new Dialog(changepasswordactivity.this);
+                        dialog.setContentView(R.layout.customdialogpasssucess);
+                        dialog.setCancelable(false);
+                        dialog.show();
+                        TextView textView = dialog.findViewById(R.id.txtpasssucess);
+                        textView.setText("Password updated sucessfully");
+                        Button okay = dialog.findViewById(R.id.btnokay);
+                        okay.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                SharedPreferences preferences = getSharedPreferences("firsttimessss", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putBoolean("flag", true);
+                                editor.putString("sflag", secondpassword);
+                                editor.apply();
+                                Intent intent = new Intent(changepasswordactivity.this, menu.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        });
+
+                    } else {
+                        Dialog dialog = new Dialog(changepasswordactivity.this);
+                        dialog.setContentView(R.layout.customdialogpasssucess);
+                        dialog.setCancelable(false);
+                        dialog.show();
+                        TextView textView = dialog.findViewById(R.id.txtpasssucess);
+                        textView.setText("Passwords dont match");
+                        Button okay = dialog.findViewById(R.id.btnokay);
+                        okay.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.show();
+                                input = "0";
+                                inputtextview.setText(input);
+                                enterpasswordtextview.setText("CREATE A 4 DIGIT PASSWORD AND PRESS ' = ''");
+                                flag--;
+                                dialog.dismiss();
+                            }
+                        });
+
+
+                    }
+
+                }
+
+            }
+
+
+
         });
 
 

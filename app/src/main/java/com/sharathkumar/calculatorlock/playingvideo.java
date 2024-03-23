@@ -1,7 +1,7 @@
-package com.example.calculatorlock;
+package com.sharathkumar.calculatorlock;
 
 
-import static com.example.calculatorlock.videosactivity.allvideolist;
+import static com.sharathkumar.calculatorlock.videosactivity.allvideolist;
 import androidx.annotation.OptIn;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowCompat;
