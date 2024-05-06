@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Menu;
@@ -218,13 +220,25 @@ public class menu extends AppCompatActivity {
         }
         else   if(id==R.id.rateourapp)
         {
-
+            Uri uri=Uri.parse("https://play.google.com/store/apps/details?id=com.sharathkumar.calculatorlock");
+            Intent gotomarket=new Intent(Intent.ACTION_VIEW,uri);
+            gotomarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+            try {
+                startActivity(gotomarket);
+            }
+            catch (ActivityNotFoundException e)
+            {
+                Uri weburi=Uri.parse("https://play.google.com/store/apps/details?id=com.sharathkumar.calculatorlock");
+                Intent gotoweb=new Intent(Intent.ACTION_VIEW,weburi);
+                startActivity(gotoweb);
+            }
         }
         else
         {
              Intent intent=new Intent();
              intent.setAction(Intent.ACTION_SEND);
              intent.setType("text/plain");
+             intent.putExtra(Intent.EXTRA_TEXT,"https://play.google.com/store/apps/details?id=com.sharathkumar.calculatorlock");
              startActivity(Intent.createChooser(intent,"Share via"));
         }
         return super.onOptionsItemSelected(item);
